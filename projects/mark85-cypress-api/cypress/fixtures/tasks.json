@@ -13,5 +13,16 @@
         "ourocard"
       ]
     }
+  },
+
+  "dup": {
+    "user": {
+      "name": "Jean Grey",
+      "email": "fenix@xmen.com",
+      "password": "pwd123"
+    },
+    "task": {
+      "name": "Fazer compras no mercado"
+    }
   }
 }
