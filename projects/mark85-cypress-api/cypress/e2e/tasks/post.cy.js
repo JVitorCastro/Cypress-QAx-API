@@ -1,7 +1,7 @@
 describe('POST /tasks', () => {
 
   beforeEach(function () {
-    cy.fixture('tasks').then(function (tasks) {
+    cy.fixture('tasks/post').then(function (tasks) {
       this.tasks = tasks
     })
   })
@@ -9,12 +9,12 @@ describe('POST /tasks', () => {
   it('Register a new task', function () {
     const { user, task } = this.tasks.create
 
-    cy.task('deleteUser', user.email)
+    cy.task('removeUser', user.email)
     cy.postUser(user)
 
     cy.postSession(user)
       .then(userResp => {
-        cy.task('deleteTask', task.name, user.email)
+        cy.task('removeTask', task.name, user.email)
         cy.postTask(task, userResp.body.token)
           .then(response => {
             expect(response.status).to.eq(200)
@@ -32,12 +32,12 @@ describe('POST /tasks', () => {
   it('Duplicate task', function () {
     const { user, task } = this.tasks.dup
 
-    cy.task('deleteUser', user.email)
+    cy.task('removeUser', user.email)
     cy.postUser(user)
 
     cy.postSession(user)
       .then(userResp => {
-        cy.task('deleteTask', task.name, user.email)
+        cy.task('removeTask', task.name, user.email)
         cy.postTask(task, userResp.body.token)
         cy.postTask(task, userResp.body.token)
           .then(response => {
