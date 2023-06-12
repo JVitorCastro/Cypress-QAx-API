@@ -27,6 +27,13 @@ module.exports = defineConfig({
         }
       })
     },
-    baseUrl: 'http://localhost:3333'
+    baseUrl: 'http://localhost:3333',
+    video: false,
+    screenshotOnRunFailure: false,
+    env:{
+      amqpHost: 'https://shark.rmq.cloudamqp.com/api/queues/kkrxotnc',
+      amqpQueue: 'tasks',
+      amqpToken: 'Basic a2tyeG90bmM6ZlFPRnlnNHRIT0FoRm4tYnc2TjgydlI4RHFHY1p5Qzc='
+    }
   },
 });
