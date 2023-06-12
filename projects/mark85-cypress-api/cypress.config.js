@@ -1,6 +1,7 @@
-const { defineConfig } = require("cypress");
-
+const { defineConfig } = require("cypress")
 const { connect } = require('./cypress/support/mongo')
+
+require('dotenv').config()
 
 module.exports = defineConfig({
   e2e: {
@@ -27,13 +28,13 @@ module.exports = defineConfig({
         }
       })
     },
-    baseUrl: 'http://localhost:3333',
+    baseUrl: process.env.BASE_URL,
     video: false,
     screenshotOnRunFailure: false,
     env:{
-      amqpHost: 'https://shark.rmq.cloudamqp.com/api/queues/kkrxotnc',
-      amqpQueue: 'tasks',
-      amqpToken: 'Basic a2tyeG90bmM6ZlFPRnlnNHRIT0FoRm4tYnc2TjgydlI4RHFHY1p5Qzc='
+      amqpHost: process.env.AMQP_HOST,
+      amqpQueue: process.env.AMQP_QUEUE,
+      amqpToken: process.env.AMQP_TOKEN
     }
   },
 });
