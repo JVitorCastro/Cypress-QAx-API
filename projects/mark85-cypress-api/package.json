@@ -16,6 +16,8 @@
   "author": "J. Vitor Castro",
   "license": "ISC",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.40.0",
+    "allure-commandline": "^2.22.1",
     "cypress": "^12.13.0",
     "cypress-plugin-api": "^2.11.1",
     "dotenv": "^16.1.4",

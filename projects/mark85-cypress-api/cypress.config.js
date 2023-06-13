@@ -1,5 +1,6 @@
 const { defineConfig } = require("cypress")
 const { connect } = require('./cypress/support/mongo')
+const allureWriter = require('@shelex/cypress-allure-plugin/writer')
 
 require('dotenv').config()
 
@@ -7,6 +8,7 @@ module.exports = defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
       const db = await connect()
+      allureWriter(on, config)
 
       on('task', {
         async removeUser(email) {
@@ -27,6 +29,8 @@ module.exports = defineConfig({
           return null
         }
       })
+
+      return config
     },
     baseUrl: process.env.BASE_URL,
     video: false,
@@ -34,7 +38,8 @@ module.exports = defineConfig({
     env:{
       amqpHost: process.env.AMQP_HOST,
       amqpQueue: process.env.AMQP_QUEUE,
-      amqpToken: process.env.AMQP_TOKEN
+      amqpToken: process.env.AMQP_TOKEN,
+      allure: true
     }
   },
 });
